@@ -309,8 +309,9 @@ update_enum_field(const google::protobuf::Reflection* reflection,
 			field->full_name() + "'");
 	}
 
+	const google::protobuf::EnumDescriptor *enumDescriptor = field->enum_type();
 	const google::protobuf::EnumValueDescriptor* enumValueDescriptor =
-	    descriptor->FindEnumValueByName(value.asString());
+		enumDescriptor->FindValueByName(value.asString());
 	if (0 == enumValueDescriptor) {
 		throw std::invalid_argument("unknown enum for field '" +
 		    field->full_name() + "': '" + value.asString() + "'");
